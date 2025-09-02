@@ -5,9 +5,9 @@ import csv
 import io
 
 import apache_beam as beam
-from apache_beam.options.pipeline_options import PipelineOptions
-from apache_beam.io import ReadFromText, WriteToText
+from apache_beam.io import WriteToText
 from apache_beam.io.gcp.bigquery import WriteToBigQuery
+from apache_beam.options.pipeline_options import PipelineOptions
 
 
 class ParseCSV(beam.DoFn):
@@ -31,8 +31,7 @@ class TransformData(beam.DoFn):
 
 def read_csv_file(readable_file):
     with beam.io.filesystems.FileSystems.open(readable_file) as gcs_file:
-        for row in csv.reader(gcs_file):
-            yield row
+        yield from csv.reader(gcs_file)
 
 
 def run_pipeline(argv=None):

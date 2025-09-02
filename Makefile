@@ -16,6 +16,10 @@ tf-destroy:
 py-run: setup
 	uv run dataflow_etl.py
 
+validate: setup
+	uv run ruff check .
+	uv run ruff format --check .
+
 clean:
 	rm -rf .venv
 	cd terraform && rm -rf .terraform .terraform.lock.hcl terraform.tfstate*
