@@ -1,0 +1,8 @@
+[project]
+name = "cdp-dataflow"
+version = "0.1.0"
+description = "Google Cloud Data Platform with Dataflow"
+requires-python = ">=3.8"
+dependencies = [
+    "apache-beam[gcp]",
+]
